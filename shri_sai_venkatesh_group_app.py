@@ -969,24 +969,4 @@ class WebsiteHandler(BaseHTTPRequestHandler):
         )
 
 
-def run_server():
-    server = HTTPServer((HOST, PORT), WebsiteHandler)
-    print("=" * 55)
-    print("       SHRI SAI VENKATESH GROUP")
-    print("       Premium Website")
-    print("=" * 55)
-    print(f"Open: http://{HOST}:{PORT}")
-    print("Press CTRL+C to stop.")
-    server.serve_forever()
 
-
-if __name__ == "__main__":
-    thread = threading.Thread(target=run_server, daemon=True)
-    thread.start()
-    webbrowser.open(f"http://{HOST}:{PORT}")
-
-    try:
-        while True:
-            threading.Event().wait(3600)
-    except KeyboardInterrupt:
-        print("\nWebsite stopped.")
