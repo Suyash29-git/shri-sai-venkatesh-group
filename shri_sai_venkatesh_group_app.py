@@ -5,6 +5,8 @@ import base64
 import html
 import threading
 import webbrowser
+import os
+
 
 HOST = "127.0.0.1"
 PORT = 8000
@@ -965,8 +967,15 @@ class WebsiteHandler(BaseHTTPRequestHandler):
 
         self.send_html(
             page("Thank you! Your enquiry has been received. "
-                 "The SSV Group team can contact you shortly.")
-        )
+                 "The SSV Group team can contact you shortly.") )
+if __name__ == "__main__":
+    server = HTTPServer(
+        ("0.0.0.0", int(os.environ.get("PORT", 10000))),
+        WebsiteHandler
+    )
+    print("Website server started")
+    server.serve_forever()
+    
 
 
 
